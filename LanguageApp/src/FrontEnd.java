@@ -1,10 +1,13 @@
 import javafx.application.Application;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -13,6 +16,18 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class FrontEnd extends Application {
+	Boolean English = true;
+	Menu file;
+	Label pLabel;
+	Menu test;
+	Label tLabel;
+	Menu settings;
+	MenuItem exit;
+	MenuItem gerEng;
+	MenuItem engGer;
+	MenuItem language;
+	MenuItem colorScheme;
+	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -41,6 +56,8 @@ public class FrontEnd extends Application {
 	Button b300 = new Button ("251-300 most common words");
 	
 	rVbox.getChildren().addAll(b50, b100, b150, b200, b250, b300);
+
+	
 	
 	grid.add(tGrammar, 0, 0, 5, 1); //column, row, column span, row span
 	grid.add(tWord, 0, 1, 5, 1);
@@ -55,6 +72,13 @@ public class FrontEnd extends Application {
 	root.setRight(rVbox);
 		
 	
+	tLabel.setOnMouseClicked(new EventHandler<MouseEvent>(){
+		@Override
+		public void handle(MouseEvent event) {
+			toggleLanguage();			
+		}
+	});
+	
 	primaryStage.setTitle("Language Application");
 	primaryStage.setScene(scene);
 	primaryStage.show();
@@ -64,21 +88,21 @@ public class FrontEnd extends Application {
 	/** Creates menu bar */	
 	public MenuBar createMenu(){
 		MenuBar menu = new MenuBar();
-		Menu file = new Menu("File");
+		file = new Menu("File");
 		Menu practice = new Menu ();
-		Label pLabel = new Label("Practice");
-		Menu test = new Menu("Test");
+		pLabel = new Label("Practice");
+		test = new Menu("Test");
 		Menu toggle = new Menu();
-		Label tLabel = new Label("DE/EN");
+		tLabel = new Label("DE/EN");
 			
-		Menu settings = new Menu("Settings");
-		MenuItem exit = new MenuItem("Exit");
+		settings = new Menu("Settings");
+		exit = new MenuItem("Exit");
 
-		MenuItem gerEng = new MenuItem("German-English");
-		MenuItem engGer = new MenuItem("English-German");
+		gerEng = new MenuItem("German-English");
+		engGer = new MenuItem("English-German");
 
-		MenuItem language = new MenuItem ("Language");
-		MenuItem colorScheme = new MenuItem ("Color Scheme");
+		language = new MenuItem ("Language");
+		colorScheme = new MenuItem ("Color Scheme");
 		
 		menu.getMenus().addAll(file, practice, test, toggle);
 		file.getItems().addAll(settings, exit);
@@ -89,6 +113,34 @@ public class FrontEnd extends Application {
 		toggle.setGraphic(tLabel);
 		
 		return menu;
+	}
+	/** Toggles the language settings for the UI */
+	public void toggleLanguage(){
+		if (English == true){
+			file.setText("Datei");
+			pLabel.setText("Üben");
+			test.setText("Test");;
+			tLabel.setText("GER/ENG");
+			settings.setText("Einstellungen");
+			exit.setText("Schließen");
+			gerEng.setText("Deutsch-Englisch");
+			engGer.setText("Englisch-Deutsch");
+			language.setText("Sprache");
+			colorScheme.setText("Farbthema");
+			English = false;
+		}
+		else {
+			file.setText("File");
+			pLabel.setText("Practice");
+			test.setText("Test");;
+			tLabel.setText("EN/GER");
+			settings.setText("Settings");
+			exit.setText("Exit");
+			gerEng.setText("German-English");
+			engGer.setText("English-German");
+			language.setText("Language");
+			colorScheme.setText("Color Scheme");
+		}
 	}
 	
 //	public VBox createVBox(){
