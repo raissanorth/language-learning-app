@@ -21,8 +21,8 @@ public class FrontEnd extends Application {
 		
 	BorderPane root = new BorderPane();	
 	GridPane grid = new GridPane();
-	Scene scene = new Scene(root, 500, 500);
-	
+	Scene scene = new Scene(root, 800, 500);
+		
 	Button prev = new Button("Previous");
 	Button next = new Button("Next");
 	
@@ -30,6 +30,17 @@ public class FrontEnd extends Application {
 	Text tWord = new Text("Word");//TODO replace with values
 	Text tDescription = new Text("Description");//TODO replace with values
 	
+	VBox rVbox = new VBox();
+	VBox lVbox = new VBox();
+
+	Button b50 = new Button("1-50 most common words");
+	Button b100 = new Button ("51-100 most common words");
+	Button b150 = new Button ("101-150 most common words");
+	Button b200 = new Button ("151-200 most common words");
+	Button b250 = new Button ("201-250 most common words");
+	Button b300 = new Button ("251-300 most common words");
+	
+	rVbox.getChildren().addAll(b50, b100, b150, b200, b250, b300);
 	
 	grid.add(tGrammar, 0, 0, 5, 1); //column, row, column span, row span
 	grid.add(tWord, 0, 1, 5, 1);
@@ -40,7 +51,8 @@ public class FrontEnd extends Application {
 	
 	root.setTop(createMenu());
 	root.setCenter(grid);
-	root.setRight(createVBox());
+	root.setLeft(lVbox);
+	root.setRight(rVbox);
 		
 	
 	primaryStage.setTitle("Language Application");
@@ -79,10 +91,10 @@ public class FrontEnd extends Application {
 		return menu;
 	}
 	
-	public VBox createVBox(){
-		VBox vbox = new VBox();
-		return vbox;
-	}
+//	public VBox createVBox(){
+//		VBox vbox = new VBox();
+//		return vbox;
+//	}
 	
 	public static void main (String [] args){
 		Application.launch(args);
