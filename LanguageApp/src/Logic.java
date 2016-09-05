@@ -18,12 +18,13 @@ public class Logic {
 		String w;
 		String d;
 		String g;
-		Scanner sc = new Scanner(new File("/home/northrais/Vocab1-50.csv"));
-		for (int i = 0; i < 50; i++) {
-			r = sc.nextInt();
-	        sc.useDelimiter(",");
-			w = sc.next();
-			d = sc.next();
+		Scanner sc = new Scanner(new File("/home/northrais/vocab1-10.csv"));
+        sc.useDelimiter(",");
+
+		for (int i = 0; i < 10; i++) {
+			r = i;
+	        w = sc.next();
+	        d = sc.next();
 			g = sc.next();
 			FlashCard f = new FlashCard(r, w, d, g);
 			vocab [f.getRank()] = f;
